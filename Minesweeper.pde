@@ -1,14 +1,14 @@
 
 
 import de.bezier.guido.*;
-int NUM_ROWS = 20;
-int NUM_COLS = 20;
+int NUM_ROWS = 40;
+int NUM_COLS = 40;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
 void setup ()
 {
-    size(400, 400);
+    size(800, 800);
     textAlign(CENTER,CENTER);
     
     // make the manager
@@ -24,7 +24,7 @@ void setup ()
 }
 public void setBombs()
 {
-    for(int b = 0; b<50; b++){
+    for(int b = 0; b<250; b++){
         int row = (int)(Math.random()*NUM_ROWS);
         int col = (int)(Math.random()*NUM_COLS);
         if(!bombs.contains(buttons[row][col]))
@@ -49,35 +49,31 @@ public boolean isWon()
 
 public void displayLosingMessage()
 {
-    for(int r = 0; r < NUM_ROWS; r++)
-    {
-        for(int c = 0; c < NUM_COLS; c++)
-        {
+    for(int r=0; r<NUM_ROWS; r++)
+        for(int c=0; c<NUM_COLS; c++)
             if(!buttons[r][c].isClicked() && bombs.contains(buttons[r][c]))
-            {
+             {   
                 buttons[r][c].marked = false;
                 buttons[r][c].clicked = true;
-                buttons[0][0].setLabel("L");
-                buttons[0][1].setLabel("o");
-                buttons[0][2].setLabel("s");
-                buttons[0][3].setLabel("e");
-                buttons[0][4].setLabel("r");
-                buttons[0][5].setLabel("!");
+                buttons[20][17].setLabel("L");
+                buttons[20][18].setLabel("o");
+                buttons[20][19].setLabel("s");
+                buttons[20][20].setLabel("e");
+                buttons[20][21].setLabel("r");
+                buttons[20][22].setLabel("!");
             }
-        }
-    }
 }
 public void displayWinningMessage()
 {
-    buttons[0][0].setLabel("C");
-    buttons[0][1].setLabel("o");
-    buttons[0][2].setLabel("n");
-    buttons[0][3].setLabel("g");
-    buttons[0][4].setLabel("r");
-    buttons[0][5].setLabel("a");
-    buttons[0][6].setLabel("t");
-    buttons[0][7].setLabel("s");
-    buttons[0][8].setLabel("!");
+    buttons[20][15].setLabel("C");
+    buttons[20][16].setLabel("o");
+    buttons[20][17].setLabel("n");
+    buttons[20][18].setLabel("g");
+    buttons[20][19].setLabel("r");
+    buttons[20][20].setLabel("a");
+    buttons[20][21].setLabel("t");
+    buttons[20][22].setLabel("s");
+    buttons[20][23].setLabel("!");
 }
 
 public class MSButton
@@ -89,8 +85,8 @@ public class MSButton
     
     public MSButton ( int rr, int cc )
     {
-        width = 400/NUM_COLS;
-        height = 400/NUM_ROWS;
+        width = 800/NUM_COLS;
+        height = 800/NUM_ROWS;
         r = rr;
         c = cc; 
         x = c*width;
@@ -151,16 +147,17 @@ public class MSButton
     public void draw () 
     {    
         if (marked)
-            fill(0);
+            fill(#FAF142);
         else if( clicked && bombs.contains(this) ) 
              fill(255,0,0);
         else if(clicked)
-            fill( 200 );
-        else 
             fill( 100 );
-
+        else 
+            fill( 180 );
+        stroke(220);
         rect(x, y, width, height);
-        fill(0);
+        fill(255);
+        textSize(10);
         text(label,x+width/2,y+height/2);
     }
     public void setLabel(String newLabel)
@@ -188,18 +185,16 @@ public class MSButton
 }
 
 public void keyPressed(){
-    if(key == 'r'){
+    if(key == 'r')
         for(int r = 0; r < NUM_ROWS; r++)
-    {
-      for(int c = 0; c < NUM_COLS; c++)
-      {
-          bombs.remove(buttons[r][c]);
-          buttons[r][c].setLabel("");
-          buttons[r][c].marked = false;
-          buttons[r][c].clicked = false;
-        }
-    }
+            for(int c = 0; c < NUM_COLS; c++)
+            {
+              bombs.remove(buttons[r][c]);
+              buttons[r][c].setLabel("");
+              buttons[r][c].marked = false;
+              buttons[r][c].clicked = false;
+            }
     setBombs(); 
     }
-}
+
 
