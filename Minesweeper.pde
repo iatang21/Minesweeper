@@ -153,8 +153,8 @@ public class MSButton
         else if(clicked)
             fill( 100 );
         else 
-            fill( 180 );
-        stroke(220);
+            fill( 170 );
+        stroke(200);
         rect(x, y, width, height);
         fill(255);
         textSize(10);
