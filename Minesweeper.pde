@@ -151,12 +151,12 @@ public class MSButton
         else if( clicked && bombs.contains(this) ) 
              fill(255,0,0);
         else if(clicked)
-            fill( 100 );
+            fill( 200 );
         else 
             fill( 170 );
         stroke(200);
         rect(x, y, width, height);
-        fill(255);
+        fill(0);
         textSize(10);
         text(label,x+width/2,y+height/2);
     }
