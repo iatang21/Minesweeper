@@ -3,6 +3,7 @@
 import de.bezier.guido.*;
 int NUM_ROWS = 40;
 int NUM_COLS = 40;
+int m,n;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
@@ -33,7 +34,7 @@ public void setBombs()
 
 public void draw ()
 {
-    background( 0 );
+    background( #025244 );
     if(isWon())
         displayWinningMessage();
 }
@@ -92,6 +93,8 @@ public class MSButton
         y = r*height;
         label = "";
         marked = clicked = false;
+        m = 0;
+        n = 0;
         Interactive.add( this ); // register it with the manager
     }
     public boolean isMarked()
@@ -146,21 +149,27 @@ public class MSButton
     public void draw () 
     {    
         if (marked)
-            fill(#FAF142);
+            fill( #B28BDE );
         else if( clicked && bombs.contains(this) )
-            fill(255,0,0);
+            fill( 255,0,0 );
         else if(clicked)
-            fill( 200 );
+            fill( #DEFFF8 );
         else 
-            fill( 170 );
-        stroke(100);
-        rect(x, y, width, height);
+            fill( #AFDED4 );
+        stroke( #025244 );
+        rect(x, y, width, height,4);
         fill(0);
-        if(label.equals("L")||label.equals("o")||label.equals("s")||label.equals("e")||label.equals("r")||label.equals("!")||label.equals("C")||label.equals("n")||label.equals("g")||label.equals("a")||label.equals("t"))
+        if(label.equals("L")||label.equals("o")||label.equals("s")||label.equals("e")||label.equals("r")||label.equals("!")||label.equals("C")||label.equals("n")||label.equals("g")||label.equals("a")||label.equals("t")){
             textSize(20);
-        else
+            m = (int)(x)+(int)(width)/2;
+            n = (int)(y)+(int)(height-4)/2;
+        }
+        else{
             textSize(10);
-        text(label,x+width/2,y+height/2);
+            m = (int)(x+width/2);
+            n = (int)(y+height/2);
+        }
+        text(label,m,n);
         // if( clicked && bombs.contains(this) ) {
         //      noStroke();
         //      fill(#F53B16);
