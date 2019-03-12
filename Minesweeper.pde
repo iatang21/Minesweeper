@@ -10,7 +10,6 @@ void setup ()
 {
     size(800, 800);
     textAlign(CENTER,CENTER);
-    
     // make the manager
     Interactive.make( this );
     buttons = new MSButton[NUM_ROWS][NUM_COLS];
@@ -109,7 +108,7 @@ public class MSButton
     {
         if (mouseButton == LEFT && label.equals(""))
         {
-          clicked = true;
+            clicked = true;
         }
         if (mouseButton == RIGHT && label.equals("") && !clicked)
         {
@@ -148,17 +147,31 @@ public class MSButton
     {    
         if (marked)
             fill(#FAF142);
-        else if( clicked && bombs.contains(this) ) 
-             fill(255,0,0);
+        else if( clicked && bombs.contains(this) )
+            fill(255,0,0);
         else if(clicked)
             fill( 200 );
         else 
             fill( 170 );
-        stroke(200);
+        stroke(100);
         rect(x, y, width, height);
         fill(0);
-        textSize(10);
+        if(label.equals("L")||label.equals("o")||label.equals("s")||label.equals("e")||label.equals("r")||label.equals("!")||label.equals("C")||label.equals("n")||label.equals("g")||label.equals("a")||label.equals("t"))
+            textSize(20);
+        else
+            textSize(10);
         text(label,x+width/2,y+height/2);
+        // if( clicked && bombs.contains(this) ) {
+        //      noStroke();
+        //      fill(#F53B16);
+        //      ellipse(x,y,75,75);
+        //      fill(#FAA244);
+        //      ellipse(x,y,60,60);
+        //      fill(#FAE89F);
+        //      ellipse(x,y,45,45);
+        //      fill(255);
+        //      ellipse(x,y,24,24);
+        //  }
     }
     public void setLabel(String newLabel)
     {
@@ -185,6 +198,9 @@ public class MSButton
 }
 
 public void keyPressed(){
+    // if(key == 'w')
+    //     displayWinningMessage();
+
     if(key == 'r')
         for(int r = 0; r < NUM_ROWS; r++)
             for(int c = 0; c < NUM_COLS; c++)
