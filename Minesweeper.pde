@@ -233,6 +233,7 @@ public void keyPressed(){
               buttons[r][c].clicked = false;
             }
     setBombs(); 
+    gameLost=false;
     }
 
 
