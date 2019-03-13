@@ -4,11 +4,13 @@ import de.bezier.guido.*;
 int NUM_ROWS = 40;
 int NUM_COLS = 40;
 int m,n;
+boolean gameLost = false;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
 void setup ()
 {
+    frameRate(400);
     size(800, 800);
     textAlign(CENTER,CENTER);
     // make the manager
@@ -150,8 +152,10 @@ public class MSButton
     {    
         if (marked)
             fill( #FF03B8 );
-        else if( clicked && bombs.contains(this) )
-            fill( 255,0,0 );
+        else if( clicked && bombs.contains(this) ){
+            fill( #E52C2C );
+            gameLost = true;
+        }
         else if(clicked)
             fill( #9A67A5 );
         else 
@@ -170,17 +174,26 @@ public class MSButton
             n = (int)(y+height/2);
         }
         text(label,m,n);
-        // if( clicked && bombs.contains(this) ) {
-        //      noStroke();
-        //      fill(#F53B16);
-        //      ellipse(x,y,75,75);
-        //      fill(#FAA244);
-        //      ellipse(x,y,60,60);
-        //      fill(#FAE89F);
-        //      ellipse(x,y,45,45);
-        //      fill(255);
-        //      ellipse(x,y,24,24);
-        //  }
+
+        if(gameLost){
+        noStroke();
+        fill(#F53B16);
+        ellipse(400,400,400,400);
+        fill(#FAA244);
+        ellipse(400,400,250,250);
+        fill(#FAE89F);
+        ellipse(400,400,150,150);
+        fill(255);
+        ellipse(400,400,75,75);
+        textSize(50);
+        fill(0);
+        text("YOU LOST!",400,396);
+        textSize(50);
+        fill(255);
+        text("YOU LOST!",400,400);
+
+        }
+    
     }
     public void setLabel(String newLabel)
     {
