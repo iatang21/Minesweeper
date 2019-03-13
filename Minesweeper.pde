@@ -34,7 +34,7 @@ public void setBombs()
 
 public void draw ()
 {
-    background( #025244 );
+    background( 200 );
     if(isWon())
         displayWinningMessage();
 }
@@ -149,18 +149,18 @@ public class MSButton
     public void draw () 
     {    
         if (marked)
-            fill( #B28BDE );
+            fill( #FF03B8 );
         else if( clicked && bombs.contains(this) )
             fill( 255,0,0 );
         else if(clicked)
-            fill( #DEFFF8 );
+            fill( #9A67A5 );
         else 
-            fill( #AFDED4 );
-        stroke( #025244 );
+            fill( #C6B5CE );
+        stroke( #EDDFF0 );
         rect(x, y, width, height,4);
-        fill(0);
+        fill(255);
         if(label.equals("L")||label.equals("o")||label.equals("s")||label.equals("e")||label.equals("r")||label.equals("!")||label.equals("C")||label.equals("n")||label.equals("g")||label.equals("a")||label.equals("t")){
-            textSize(20);
+            textSize(25);
             m = (int)(x)+(int)(width)/2;
             n = (int)(y)+(int)(height-4)/2;
         }
