@@ -4,6 +4,7 @@ import de.bezier.guido.*;
 int NUM_ROWS = 40;
 int NUM_COLS = 40;
 int m,n;
+public boolean win = false;
 boolean gameLost = false;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
@@ -37,8 +38,6 @@ public void setBombs()
 public void draw ()
 {
     background( 200 );
-    if(isWon())
-        displayWinningMessage();
 }
 public boolean isWon()
 {
@@ -160,7 +159,7 @@ public class MSButton
             fill( #9A67A5 );
         else 
             fill( #C6B5CE );
-        stroke( #EDDFF0 );
+        stroke( /*#8A549B*/#EDDFF0 );
         rect(x, y, width, height,4);
         fill(255);
         if(label.equals("L")||label.equals("o")||label.equals("s")||label.equals("e")||label.equals("r")||label.equals("!")||label.equals("C")||label.equals("n")||label.equals("g")||label.equals("a")||label.equals("t")){
@@ -176,22 +175,28 @@ public class MSButton
         text(label,m,n);
 
         if(gameLost){
-        noStroke();
-        fill(#F53B16);
-        ellipse(400,400,400,400);
-        fill(#FAA244);
-        ellipse(400,400,250,250);
-        fill(#FAE89F);
-        ellipse(400,400,150,150);
-        fill(255);
-        ellipse(400,400,75,75);
-        textSize(50);
-        fill(0);
-        text("YOU LOST!",400,396);
-        textSize(50);
-        fill(255);
-        text("YOU LOST!",400,400);
-
+            noStroke();
+            fill(#F53B16);
+            ellipse(400,400,400,400);
+            fill(#FAA244);
+            ellipse(400,400,250,250);
+            fill(#FAE89F);
+            ellipse(400,400,150,150);
+            fill(255);
+            ellipse(400,400,75,75);
+            textSize(50);
+            fill(0);
+            text("YOU LOST!",402,396);
+            textSize(50);
+            fill(255);
+            text("YOU LOST!",400,400);
+        }
+        if(isWon()){
+            fill( #7102AA );
+            rect(250,350,300,100);
+            textSize(50);
+            fill( 255 );
+            text("YOU WON!",400,400);
         }
     
     }
@@ -221,9 +226,9 @@ public class MSButton
 
 public void keyPressed(){
     // if(key == 'w')
-    //     displayWinningMessage();
+    //     win=true;
 
-    if(key == 'r')
+    if(key == 'r'){
         for(int r = 0; r < NUM_ROWS; r++)
             for(int c = 0; c < NUM_COLS; c++)
             {
@@ -232,8 +237,11 @@ public void keyPressed(){
               buttons[r][c].marked = false;
               buttons[r][c].clicked = false;
             }
+            gameLost=false;
+            win=false;
+    }
     setBombs(); 
-    gameLost=false;
+    
     }
 
 
