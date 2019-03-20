@@ -158,8 +158,8 @@ public class MSButton
         else if(clicked)
             fill( #9A67A5 );
         else 
-            fill( #C6B5CE );
-        stroke( /*#8A549B*/#EDDFF0 );
+            fill( #C1A7CE );
+        stroke( 200 );
         rect(x, y, width, height,4);
         fill(255);
         if(label.equals("L")||label.equals("o")||label.equals("s")||label.equals("e")||label.equals("r")||label.equals("!")||label.equals("C")||label.equals("n")||label.equals("g")||label.equals("a")||label.equals("t")){
